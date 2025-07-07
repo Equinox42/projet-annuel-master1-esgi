@@ -1,3 +1,4 @@
+# Bastion
 resource "aws_instance" "bastion" {
   depends_on = [aws_db_instance.rds]
   ami                         = var.image_id
