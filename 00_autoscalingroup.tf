@@ -47,3 +47,18 @@ resource "aws_autoscaling_attachment" "autoscaling_attachment" {
   autoscaling_group_name = aws_autoscaling_group.asg_web.id
   lb_target_group_arn    = aws_lb_target_group.alb_tg.arn
 }
+
+
+resource "aws_autoscaling_policy" "cpu_scaling_policy" {
+  name                   = "${var.name}-cpu-policy"
+  autoscaling_group_name = aws_autoscaling_group.asg_web.name
+  policy_type            = "TargetTrackingScaling"
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+
+    target_value = 60.0  # CPU cible en %
+  }
+}
