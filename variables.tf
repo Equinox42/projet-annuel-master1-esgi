@@ -70,7 +70,7 @@ variable "image_id" {
 variable "instance_type" {
   description = "Instance type used by the ASG"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 
 ## Database 
