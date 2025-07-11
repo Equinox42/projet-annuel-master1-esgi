@@ -56,6 +56,8 @@ if [[ -z "$DB_HOST" || "$DB_HOST" == "None" ]]; then
 fi
 
 sed -i "s|\(\$hostname *= *\).*;|\1'${DB_HOST}';|" ${DEST_DIR}/config.php
+
+# Change rights for Apache user
 chown -R www-data:www-data ${DEST_DIR}
 chmod -R 755 ${DEST_DIR}
 systemctl restart apache2
